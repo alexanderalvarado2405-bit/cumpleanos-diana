@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feliz Cumpleaños, Diana ❤️</title>
+    <!-- Fuentes románticas y legibles de Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Great+Vibes&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --rosa-pastel: #fff0f3;
+            --rosa-suave: #ffccd5;
+            --blanco-crema: #fffafb;
+            --rojo-vino: #721121;
+            --rojo-vino-claro: #9e1b32;
+            --dorado: #d4af37;
+            --dorado-suave: #f3e5ab;
+            --texto-oscuro: #3d1c22;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--rosa-pastel);
+            color: var(--texto-oscuro);
+            overflow-x: hidden;
+            line-height: 1.7;
+        }
+
+        /* Canvas de Partículas / Corazones flotantes */
+        #particles-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Botón Flotante de Música */
+        .music-control {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: linear-gradient(135deg, var(--rojo-vino), var(--rojo-vino-claro));
+            color: #fff;
+            border: 2px solid var(--dorado);
+            border-radius: 50px;
+            padding: 12px 20px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 500;
+            display: none; /* Se muestra al abrir el regalo */
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 6px 20px rgba(114, 17, 33, 0.35);
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .music-control:active {
+            transform: scale(0.95);
+        }
+
+        .music-pulse {
+            width: 10px;
+            height: 10px;
+            background-color: var(--dorado);
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .playing .music-pulse {
+            animation: pulse 1.2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(0.9); box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.7); }
+            70% { transform: scale(1.2); box-shadow: 0 0 0 8px rgba(212, 175, 55, 0); }
+            100% { transform: scale(0.9); box-shadow: 0 0 0 0 rgba(212, 175, 55, 0); }
+        }
+
+        /* 1. PORTADA PRINCIPAL */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 30px 20px;
+            background: radial-gradient(circle at center, #ffffff 0%, var(--rosa-pastel) 75%, var(--rosa-suave) 100%);
+            z-index: 2;
+        }
+
+        .hero-badge {
+            font-size: 0.85rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--dorado);
+            font-weight: 600;
+            margin-bottom: 15px;
+            opacity: 0;
+            animation: fadeUp 1s ease forwards 0.3s;
+        }
+
+        .hero h1 {
+            font-family: 'Great Vibes', cursive;
+            font-size: clamp(3.2rem, 11vw, 5.5rem);
+            color: var(--rojo-vino);
+            font-weight: 400;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 10px rgba(114, 17, 33, 0.1);
+            opacity: 0;
+            animation: fadeUp 1s ease forwards 0.6s;
+        }
+
+        .hero p {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(1.25rem, 4.5vw, 1.6rem);
+            color: var(--texto-oscuro);
+            max-width: 600px;
+            margin-bottom: 40px;
+            font-style: italic;
+            opacity: 0;
+            animation: fadeUp 1s ease forwards 0.9s;
+        }
+
+        .btn-open {
+            background: linear-gradient(135deg, var(--rojo-vino), var(--rojo-vino-claro));
+            color: #ffffff;
+            border: 2px solid var(--dorado);
+            padding: 18px 36px;
+            font-size: 1.1rem;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 500;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 10px 25px rgba(114, 17, 33, 0.3);
+            transition: all 0.4s ease;
+            opacity: 0;
+            animation: fadeUp 1s ease forwards 1.2s;
+        }
+
+        .btn-open:hover, .btn-open:active {
+            transform: translateY(-3px) scale(1.03);
+            box-shadow: 0 15px 30px rgba(114, 17, 33, 0.4);
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(25px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Contenedor Principal (Oculto hasta pulsar el botón) */
+        #main-content {
+            display: none;
+            position: relative;
+            z-index: 2;
+        }
+
+        section {
+            padding: 70px 20px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-family: 'Great Vibes', cursive;
+            font-size: clamp(2.6rem, 8vw, 3.8rem);
+            color: var(--rojo-vino);
+            text-align: center;
+            margin-bottom: 10px;
+            font-weight: 400;
+        }
+
+        .section-divider {
+            width: 80px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--dorado), transparent);
+            margin: 0 auto 40px auto;
+        }
+
+        /* Animación Reveal al hacer Scroll */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.9s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* 2. NUESTRA CARTA */
+        .letter-paper {
+            background-color: var(--blanco-crema);
+            background-image: radial-gradient(var(--rosa-suave) 0.5px, transparent 0.5px);
+            background-size: 20px 20px;
+            padding: 45px 30px;
+            border-radius: 16px;
+            border: 1px solid rgba(212, 175, 55, 0.4);
+            box-shadow: 0 15px 40px rgba(114, 17, 33, 0.08);
+            position: relative;
+        }
+
+        .letter-paper::before {
+            content: '❝';
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 4rem;
+            color: rgba(212, 175, 55, 0.35);
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            line-height: 1;
+        }
+
+        .letter-text p {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(1.22rem, 4.2vw, 1.38rem);
+            color: #2c1418;
+            margin-bottom: 22px;
+            line-height: 1.85;
+            text-align: left;
+        }
+
+        .letter-text p:first-child {
+            font-weight: 700;
+            font-size: 1.45rem;
+            color: var(--rojo-vino);
+        }
+
+        .letter-signature {
+            margin-top: 35px;
+            text-align: right;
+            font-family: 'Great Vibes', cursive;
+            font-size: 2.2rem;
+            color: var(--rojo-vino);
+        }
+
+        /* 3. GALERÍA POLAROID */
+        .polaroid-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 35px;
+            padding: 10px;
+        }
+
+        .polaroid-card {
+            background: #ffffff;
+            padding: 15px 15px 25px 15px;
+            border-radius: 4px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+            border: 1px solid rgba(212, 175, 55, 0.25);
+            cursor: pointer;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .polaroid-card:nth-child(1) { transform: rotate(-2.5deg); }
+        .polaroid-card:nth-child(2) { transform: rotate(2deg); }
+        .polaroid-card:nth-child(3) { transform: rotate(-1.5deg); }
+        .polaroid-card:nth-child(4) { transform: rotate(2.5deg); }
+        .polaroid-card:nth-child(5) { transform: rotate(-2deg); }
+
+        .polaroid-card:hover, .polaroid-card:active {
+            transform: rotate(0deg) scale(1.03);
+            box-shadow: 0 15px 35px rgba(114, 17, 33, 0.2);
+            z-index: 5;
+        }
+
+        .polaroid-img-wrapper {
+            width: 100%;
+            aspect-ratio: 4 / 5;
+            background-color: #f8e8ec;
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .polaroid-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .polaroid-placeholder {
+            text-align: center;
+            padding: 20px;
+            color: var(--rojo-vino);
+            font-size: 0.9rem;
+            display: none;
+        }
+
+        .polaroid-caption {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.2rem;
+            font-style: italic;
+            font-weight: 600;
+            color: var(--texto-oscuro);
+            text-align: center;
+            margin-top: 16px;
+        }
+
+        .tap-hint {
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--rojo-vino-claro);
+            margin-bottom: 25px;
+            opacity: 0.8;
+        }
+
+        /* Modal para ampliar fotos */
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(25, 5, 10, 0.92);
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding: 20px;
+        }
+
+        .lightbox img {
+            max-width: 95%;
+            max-height: 75vh;
+            border: 8px solid #fff;
+            border-radius: 4px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+        }
+
+        .lightbox-caption {
+            color: #fff;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.4rem;
+            font-style: italic;
+            margin-top: 15px;
+            text-align: center;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            color: #fff;
+            font-size: 2.2rem;
+            cursor: pointer;
+            background: none;
+            border: none;
+        }
+
+        /* 4. SEIS RAZONES POR LAS QUE ERES ESPECIAL (Flip Cards) */
+        .reasons-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 22px;
+        }
+
+        .flip-card {
+            background-color: transparent;
+            height: 220px;
+            perspective: 1000px;
+            cursor: pointer;
+        }
+
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.7s cubic-bezier(0.4, 0.2, 0.2, 1);
+            transform-style: preserve-3d;
+        }
+
+        .flip-card.flipped .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .flip-card-front, .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            border-radius: 16px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 25px;
+            box-shadow: 0 8px 25px rgba(114, 17, 33, 0.1);
+        }
+
+        .flip-card-front {
+            background: linear-gradient(145deg, #ffffff, var(--rosa-pastel));
+            border: 1.5px solid var(--dorado);
+            color: var(--rojo-vino);
+        }
+
+        .reason-number {
+            font-family: 'Great Vibes', cursive;
+            font-size: 2.5rem;
+            color: var(--dorado);
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+
+        .flip-card-front p {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+
+        .flip-card-front span {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-top: 12px;
+            color: var(--rojo-vino-claro);
+            opacity: 0.75;
+        }
+
+        .flip-card-back {
+            background: linear-gradient(135deg, var(--rojo-vino), var(--rojo-vino-claro));
+            color: #ffffff;
+            border: 1.5px solid var(--dorado);
+            transform: rotateY(180deg);
+        }
+
+        .flip-card-back p {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.25rem;
+            line-height: 1.5;
+        }
+
+        /* 5. SECCIÓN ESPECIAL: 19 DE DICIEMBRE */
+        .special-date-section {
+            background: linear-gradient(135deg, #4a0a14 0%, var(--rojo-vino) 50%, #5c0d1a 100%);
+            color: #ffffff;
+            border-radius: 24px;
+            padding: 60px 25px;
+            margin: 40px 20px;
+            text-align: center;
+            border: 2px solid var(--dorado);
+            box-shadow: 0 20px 50px rgba(114, 17, 33, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        @media (min-width: 940px) {
+            .special-date-section {
+                margin: 40px auto;
+            }
+        }
+
+        .timeline-badge {
+            display: inline-block;
+            border: 1px solid var(--dorado);
+            color: var(--dorado-suave);
+            padding: 6px 18px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        .special-date-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2rem, 7vw, 3.2rem);
+            font-weight: 700;
+            color: var(--dorado);
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        .special-date-subtitle {
+            font-family: 'Great Vibes', cursive;
+            font-size: clamp(2.2rem, 7vw, 3rem);
+            color: #ffffff;
+            margin-bottom: 25px;
+        }
+
+        .timeline-line {
+            width: 2px;
+            height: 45px;
+            background: linear-gradient(to bottom, var(--dorado), transparent);
+            margin: 0 auto 25px auto;
+        }
+
+        .special-date-quote {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(1.3rem, 4.5vw, 1.65rem);
+            font-style: italic;
+            max-width: 650px;
+            margin: 0 auto;
+            color: var(--rosa-pastel);
+            line-height: 1.7;
+        }
+
+        /* 6. CUPÓN DE REGALO */
+        .coupon-wrapper {
+            max-width: 650px;
+            margin: 0 auto;
+        }
+
+        .coupon-card {
+            background: linear-gradient(135deg, #ffffff 0%, #fff8fa 100%);
+            border: 2px dashed var(--dorado);
+            border-radius: 20px;
+            padding: 35px 25px;
+            position: relative;
+            box-shadow: 0 15px 35px rgba(212, 175, 55, 0.2);
+            outline: 6px solid #ffffff;
+        }
+
+        .coupon-header {
+            text-align: center;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.4);
+            padding-bottom: 20px;
+            margin-bottom: 25px;
+        }
+
+        .coupon-tag {
+            background-color: var(--dorado);
+            color: #fff;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            padding: 5px 14px;
+            border-radius: 20px;
+            text-transform: uppercase;
+        }
+
+        .coupon-header h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(1.6rem, 5.5vw, 2.2rem);
+            color: var(--rojo-vino);
+            margin-top: 15px;
+            font-weight: 700;
+        }
+
+        .coupon-includes-title {
+            font-weight: 600;
+            color: var(--rojo-vino);
+            margin-bottom: 15px;
+            font-size: 1rem;
+        }
+
+        .coupon-list {
+            list-style: none;
+            margin-bottom: 25px;
+        }
+
+        .coupon-list li {
+            position: relative;
+            padding-left: 28px;
+            margin-bottom: 12px;
+            font-size: 1.02rem;
+            color: var(--texto-oscuro);
+        }
+
+        .coupon-list li::before {
+            content: '✦';
+            position: absolute;
+            left: 0;
+            color: var(--dorado);
+            font-size: 1.1rem;
+        }
+
+        .coupon-footer {
+            background-color: var(--rosa-pastel);
+            padding: 18px;
+            border-radius: 12px;
+            text-align: center;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+        }
+
+        .coupon-footer p {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: var(--rojo-vino);
+            margin-bottom: 5px;
+        }
+
+        .coupon-footer span {
+            font-size: 0.85rem;
+            color: var(--rojo-vino-claro);
+            font-style: italic;
+        }
+
+        /* 7. SORPRESA FINAL */
+        .final-surprise {
+            text-align: center;
+            padding: 80px 20px 110px 20px;
+            background: radial-gradient(circle at center, #ffffff 0%, var(--rosa-pastel) 100%);
+            border-top: 1px solid rgba(212, 175, 55, 0.3);
+        }
+
+        .final-heart {
+            font-size: 3rem;
+            display: inline-block;
+            animation: heartbeat 1.5s infinite;
+            margin-bottom: 20px;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.18); }
+        }
+
+        .final-quote {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(1.5rem, 5vw, 2.1rem);
+            color: var(--rojo-vino);
+            font-weight: 600;
+            max-width: 700px;
+            margin: 0 auto 25px auto;
+            line-height: 1.6;
+        }
+
+        .final-subquote {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(1.2rem, 4vw, 1.5rem);
+            font-style: italic;
+            color: var(--texto-oscuro);
+            max-width: 600px;
+            margin: 0 auto 35px auto;
+        }
+
+        .btn-petals {
+            background: transparent;
+            color: var(--rojo-vino);
+            border: 1.5px solid var(--rojo-vino);
+            padding: 12px 26px;
+            border-radius: 50px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-petals:hover, .btn-petals:active {
+            background: var(--rojo-vino);
+            color: #fff;
+        }
