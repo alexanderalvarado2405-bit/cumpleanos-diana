@@ -40,17 +40,6 @@
             line-height: 1.7;
         }
 
-        /* Canvas de Partículas / Corazones flotantes */
-        #particles-canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 1;
-        }
-
         /* Botón Flotante de Música */
         .music-control {
             position: fixed;
@@ -65,7 +54,7 @@
             font-family: 'Montserrat', sans-serif;
             font-size: 0.9rem;
             font-weight: 500;
-            display: none; /* Se muestra al abrir el regalo */
+            display: flex;
             align-items: center;
             gap: 8px;
             box-shadow: 0 6px 20px rgba(114, 17, 33, 0.35);
@@ -159,17 +148,11 @@
             animation: fadeUp 1s ease forwards 1.2s;
         }
 
-        .btn-open:hover, .btn-open:active {
-            transform: translateY(-3px) scale(1.03);
-            box-shadow: 0 15px 30px rgba(114, 17, 33, 0.4);
-        }
-
         @keyframes fadeUp {
             from { opacity: 0; transform: translateY(25px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Contenedor Principal (Oculto hasta pulsar el botón) */
         #main-content {
             display: none;
             position: relative;
@@ -188,7 +171,6 @@
             color: var(--rojo-vino);
             text-align: center;
             margin-bottom: 10px;
-            font-weight: 400;
         }
 
         .section-divider {
@@ -198,19 +180,7 @@
             margin: 0 auto 40px auto;
         }
 
-        /* Animación Reveal al hacer Scroll */
-        .reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.9s ease-out;
-        }
-
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* 2. NUESTRA CARTA */
+        /* CARTA */
         .letter-paper {
             background-color: var(--blanco-crema);
             background-image: radial-gradient(var(--rosa-suave) 0.5px, transparent 0.5px);
@@ -219,18 +189,7 @@
             border-radius: 16px;
             border: 1px solid rgba(212, 175, 55, 0.4);
             box-shadow: 0 15px 40px rgba(114, 17, 33, 0.08);
-            position: relative;
-        }
-
-        .letter-paper::before {
-            content: '❝';
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 4rem;
-            color: rgba(212, 175, 55, 0.35);
-            position: absolute;
-            top: 10px;
-            left: 20px;
-            line-height: 1;
+            margin-bottom: 50px;
         }
 
         .letter-text p {
@@ -239,13 +198,6 @@
             color: #2c1418;
             margin-bottom: 22px;
             line-height: 1.85;
-            text-align: left;
-        }
-
-        .letter-text p:first-child {
-            font-weight: 700;
-            font-size: 1.45rem;
-            color: var(--rojo-vino);
         }
 
         .letter-signature {
@@ -256,7 +208,7 @@
             color: var(--rojo-vino);
         }
 
-        /* 3. GALERÍA POLAROID */
+        /* GALERÍA DE FOTOS REALES */
         .polaroid-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -270,31 +222,16 @@
             border-radius: 4px;
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
             border: 1px solid rgba(212, 175, 55, 0.25);
-            cursor: pointer;
-            transition: transform 0.4s ease, box-shadow 0.4s ease;
         }
 
-        .polaroid-card:nth-child(1) { transform: rotate(-2.5deg); }
-        .polaroid-card:nth-child(2) { transform: rotate(2deg); }
-        .polaroid-card:nth-child(3) { transform: rotate(-1.5deg); }
-        .polaroid-card:nth-child(4) { transform: rotate(2.5deg); }
-        .polaroid-card:nth-child(5) { transform: rotate(-2deg); }
-
-        .polaroid-card:hover, .polaroid-card:active {
-            transform: rotate(0deg) scale(1.03);
-            box-shadow: 0 15px 35px rgba(114, 17, 33, 0.2);
-            z-index: 5;
-        }
+        .polaroid-card:nth-child(odd) { transform: rotate(-1.5deg); }
+        .polaroid-card:nth-child(even) { transform: rotate(1.5deg); }
 
         .polaroid-img-wrapper {
             width: 100%;
             aspect-ratio: 4 / 5;
             background-color: #f8e8ec;
             overflow: hidden;
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
         }
 
         .polaroid-img-wrapper img {
@@ -302,14 +239,6 @@
             height: 100%;
             object-fit: cover;
             display: block;
-        }
-
-        .polaroid-placeholder {
-            text-align: center;
-            padding: 20px;
-            color: var(--rojo-vino);
-            font-size: 0.9rem;
-            display: none;
         }
 
         .polaroid-caption {
@@ -322,351 +251,122 @@
             margin-top: 16px;
         }
 
-        .tap-hint {
+        footer {
             text-align: center;
-            font-size: 0.85rem;
-            color: var(--rojo-vino-claro);
-            margin-bottom: 25px;
-            opacity: 0.8;
+            padding: 30px;
+            background-color: var(--rojo-vino);
+            color: var(--blanco-crema);
+            margin-top: 50px;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Audio de Fondo con tu archivo exacto -->
+    <audio id="bg-music" loop>
+        <source src="@coldplay Yellow (Lyrics).m4a" type="audio/mp4">
+    </audio>
+
+    <!-- Botón de Música Flotante -->
+    <button class="music-control" id="music-btn" onclick="toggleMusic()">
+        <span class="music-pulse"></span>
+        <span id="music-text">Reproducir música</span>
+    </button>
+
+    <header class="hero">
+        <div class="hero-badge">Feliz Cumpleaños</div>
+        <h1>Diana</h1>
+        <p>Un día especial para celebrar tu vida y todo lo hermoso que aportas al mundo.</p>
+        <button class="btn-open" onclick="openGift()">Abrir tu regalo ❤️</button>
+    </header>
+
+    <div id="main-content">
+        <section>
+            <h2 class="section-title">Para Alguien Muy Especial</h2>
+            <div class="section-divider"></div>
+            
+            <div class="letter-paper">
+                <div class="letter-text">
+                    <p>Querida Diana,</p>
+                    <p>Hoy en tu cumpleaños quiero recordarte lo increíble que eres. Que este nuevo año esté lleno de momentos inolvidables, sonrisas sinceras y metas cumplidas.</p>
+                    <p>Disfruta cada segundo de este día pensado especialmente para ti.</p>
+                </div>
+                <div class="letter-signature">Con todo mi cariño</div>
+            </div>
+
+            <!-- Galería con tus fotos reales de GitHub -->
+            <div class="polaroid-grid">
+                <div class="polaroid-card">
+                    <div class="polaroid-img-wrapper">
+                        <img src="IMG-20251208-WA0010.jpg" alt="Foto especial 1">
+                    </div>
+                    <div class="polaroid-caption">Momentos inolvidables</div>
+                </div>
+
+                <div class="polaroid-card">
+                    <div class="polaroid-img-wrapper">
+                        <img src="IMG-20260927-WA0016.jpg" alt="Foto especial 2">
+                    </div>
+                    <div class="polaroid-caption">Sonrisas que iluminan</div>
+                </div>
+
+                <div class="polaroid-card">
+                    <div class="polaroid-img-wrapper">
+                        <img src="IMG-20260927-WA0053.jpg" alt="Foto especial 3">
+                    </div>
+                    <div class="polaroid-caption">A tu lado todo es mejor</div>
+                </div>
+
+                <div class="polaroid-card">
+                    <div class="polaroid-img-wrapper">
+                        <img src="IMG_20251208_184717_807.webp" alt="Foto especial 4">
+                    </div>
+                    <div class="polaroid-caption">Nuestro lugar favorito</div>
+                </div>
+
+                <div class="polaroid-card">
+                    <div class="polaroid-img-wrapper">
+                        <img src="IMG_20260102_194923_263.webp" alt="Foto especial 5">
+                    </div>
+                    <div class="polaroid-caption">Siempre juntos</div>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <p>Hecho con mucho cariño para ti ❤️</p>
+        </footer>
+    </div>
+
+    <script>
+        const music = document.getElementById('bg-music');
+        const musicBtn = document.getElementById('music-btn');
+        const musicText = document.getElementById('music-text');
+
+        function openGift() {
+            document.getElementById('main-content').style.display = 'block';
+            music.play().then(() => {
+                musicBtn.classList.add('playing');
+                musicText.innerText = 'Pausar música';
+            }).catch(e => {
+                console.log("Audio autoplay blocked");
+            });
+            musicBtn.style.display = 'flex';
+            window.scrollTo({ top: window.innerHeight, behavior: 'smooth' });
         }
 
-        /* Modal para ampliar fotos */
-        .lightbox {
-            display: none;
-            position: fixed;
-            z-index: 2000;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(25, 5, 10, 0.92);
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            padding: 20px;
-        }
-
-        .lightbox img {
-            max-width: 95%;
-            max-height: 75vh;
-            border: 8px solid #fff;
-            border-radius: 4px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
-        }
-
-        .lightbox-caption {
-            color: #fff;
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.4rem;
-            font-style: italic;
-            margin-top: 15px;
-            text-align: center;
-        }
-
-        .lightbox-close {
-            position: absolute;
-            top: 20px;
-            right: 25px;
-            color: #fff;
-            font-size: 2.2rem;
-            cursor: pointer;
-            background: none;
-            border: none;
-        }
-
-        /* 4. SEIS RAZONES POR LAS QUE ERES ESPECIAL (Flip Cards) */
-        .reasons-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 22px;
-        }
-
-        .flip-card {
-            background-color: transparent;
-            height: 220px;
-            perspective: 1000px;
-            cursor: pointer;
-        }
-
-        .flip-card-inner {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            text-align: center;
-            transition: transform 0.7s cubic-bezier(0.4, 0.2, 0.2, 1);
-            transform-style: preserve-3d;
-        }
-
-        .flip-card.flipped .flip-card-inner {
-            transform: rotateY(180deg);
-        }
-
-        .flip-card-front, .flip-card-back {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            -webkit-backface-visibility: hidden;
-            backface-visibility: hidden;
-            border-radius: 16px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 25px;
-            box-shadow: 0 8px 25px rgba(114, 17, 33, 0.1);
-        }
-
-        .flip-card-front {
-            background: linear-gradient(145deg, #ffffff, var(--rosa-pastel));
-            border: 1.5px solid var(--dorado);
-            color: var(--rojo-vino);
-        }
-
-        .reason-number {
-            font-family: 'Great Vibes', cursive;
-            font-size: 2.5rem;
-            color: var(--dorado);
-            line-height: 1;
-            margin-bottom: 8px;
-        }
-
-        .flip-card-front p {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.25rem;
-            font-weight: 600;
-        }
-
-        .flip-card-front span {
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            margin-top: 12px;
-            color: var(--rojo-vino-claro);
-            opacity: 0.75;
-        }
-
-        .flip-card-back {
-            background: linear-gradient(135deg, var(--rojo-vino), var(--rojo-vino-claro));
-            color: #ffffff;
-            border: 1.5px solid var(--dorado);
-            transform: rotateY(180deg);
-        }
-
-        .flip-card-back p {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.25rem;
-            line-height: 1.5;
-        }
-
-        /* 5. SECCIÓN ESPECIAL: 19 DE DICIEMBRE */
-        .special-date-section {
-            background: linear-gradient(135deg, #4a0a14 0%, var(--rojo-vino) 50%, #5c0d1a 100%);
-            color: #ffffff;
-            border-radius: 24px;
-            padding: 60px 25px;
-            margin: 40px 20px;
-            text-align: center;
-            border: 2px solid var(--dorado);
-            box-shadow: 0 20px 50px rgba(114, 17, 33, 0.3);
-            position: relative;
-            overflow: hidden;
-        }
-
-        @media (min-width: 940px) {
-            .special-date-section {
-                margin: 40px auto;
+        function toggleMusic() {
+            if (music.paused) {
+                music.play();
+                musicBtn.classList.add('playing');
+                musicText.innerText = 'Pausar música';
+            } else {
+                music.pause();
+                musicBtn.classList.remove('playing');
+                musicText.innerText = 'Reproducir música';
             }
         }
-
-        .timeline-badge {
-            display: inline-block;
-            border: 1px solid var(--dorado);
-            color: var(--dorado-suave);
-            padding: 6px 18px;
-            border-radius: 50px;
-            font-size: 0.8rem;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            margin-bottom: 20px;
-        }
-
-        .special-date-title {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: clamp(2rem, 7vw, 3.2rem);
-            font-weight: 700;
-            color: var(--dorado);
-            letter-spacing: 2px;
-            margin-bottom: 10px;
-        }
-
-        .special-date-subtitle {
-            font-family: 'Great Vibes', cursive;
-            font-size: clamp(2.2rem, 7vw, 3rem);
-            color: #ffffff;
-            margin-bottom: 25px;
-        }
-
-        .timeline-line {
-            width: 2px;
-            height: 45px;
-            background: linear-gradient(to bottom, var(--dorado), transparent);
-            margin: 0 auto 25px auto;
-        }
-
-        .special-date-quote {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: clamp(1.3rem, 4.5vw, 1.65rem);
-            font-style: italic;
-            max-width: 650px;
-            margin: 0 auto;
-            color: var(--rosa-pastel);
-            line-height: 1.7;
-        }
-
-        /* 6. CUPÓN DE REGALO */
-        .coupon-wrapper {
-            max-width: 650px;
-            margin: 0 auto;
-        }
-
-        .coupon-card {
-            background: linear-gradient(135deg, #ffffff 0%, #fff8fa 100%);
-            border: 2px dashed var(--dorado);
-            border-radius: 20px;
-            padding: 35px 25px;
-            position: relative;
-            box-shadow: 0 15px 35px rgba(212, 175, 55, 0.2);
-            outline: 6px solid #ffffff;
-        }
-
-        .coupon-header {
-            text-align: center;
-            border-bottom: 1px solid rgba(212, 175, 55, 0.4);
-            padding-bottom: 20px;
-            margin-bottom: 25px;
-        }
-
-        .coupon-tag {
-            background-color: var(--dorado);
-            color: #fff;
-            font-size: 0.75rem;
-            font-weight: 600;
-            letter-spacing: 2px;
-            padding: 5px 14px;
-            border-radius: 20px;
-            text-transform: uppercase;
-        }
-
-        .coupon-header h3 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: clamp(1.6rem, 5.5vw, 2.2rem);
-            color: var(--rojo-vino);
-            margin-top: 15px;
-            font-weight: 700;
-        }
-
-        .coupon-includes-title {
-            font-weight: 600;
-            color: var(--rojo-vino);
-            margin-bottom: 15px;
-            font-size: 1rem;
-        }
-
-        .coupon-list {
-            list-style: none;
-            margin-bottom: 25px;
-        }
-
-        .coupon-list li {
-            position: relative;
-            padding-left: 28px;
-            margin-bottom: 12px;
-            font-size: 1.02rem;
-            color: var(--texto-oscuro);
-        }
-
-        .coupon-list li::before {
-            content: '✦';
-            position: absolute;
-            left: 0;
-            color: var(--dorado);
-            font-size: 1.1rem;
-        }
-
-        .coupon-footer {
-            background-color: var(--rosa-pastel);
-            padding: 18px;
-            border-radius: 12px;
-            text-align: center;
-            border: 1px solid rgba(212, 175, 55, 0.3);
-        }
-
-        .coupon-footer p {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.15rem;
-            font-weight: 600;
-            color: var(--rojo-vino);
-            margin-bottom: 5px;
-        }
-
-        .coupon-footer span {
-            font-size: 0.85rem;
-            color: var(--rojo-vino-claro);
-            font-style: italic;
-        }
-
-        /* 7. SORPRESA FINAL */
-        .final-surprise {
-            text-align: center;
-            padding: 80px 20px 110px 20px;
-            background: radial-gradient(circle at center, #ffffff 0%, var(--rosa-pastel) 100%);
-            border-top: 1px solid rgba(212, 175, 55, 0.3);
-        }
-
-        .final-heart {
-            font-size: 3rem;
-            display: inline-block;
-            animation: heartbeat 1.5s infinite;
-            margin-bottom: 20px;
-        }
-
-        @keyframes heartbeat {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.18); }
-        }
-
-        .final-quote {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: clamp(1.5rem, 5vw, 2.1rem);
-            color: var(--rojo-vino);
-            font-weight: 600;
-            max-width: 700px;
-            margin: 0 auto 25px auto;
-            line-height: 1.6;
-        }
-
-        .final-subquote {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: clamp(1.2rem, 4vw, 1.5rem);
-            font-style: italic;
-            color: var(--texto-oscuro);
-            max-width: 600px;
-            margin: 0 auto 35px auto;
-        }
-
-        .btn-petals {
-            background: transparent;
-            color: var(--rojo-vino);
-            border: 1.5px solid var(--rojo-vino);
-            padding: 12px 26px;
-            border-radius: 50px;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 0.9rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .btn-petals:hover, .btn-petals:active {
-            background: var(--rojo-vino);
-            color: #fff;
-        }
+    </script>
+</body>
+</html>
