@@ -4,11 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Feliz Cumpleaños, Diana ❤️</title>
-    <!-- Fuentes románticas y legibles de Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Great+Vibes&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
-    
     <style>
         :root {
             --rosa-pastel: #fff0f3;
@@ -17,21 +15,9 @@
             --rojo-vino: #721121;
             --rojo-vino-claro: #9e1b32;
             --dorado: #d4af37;
-            --dorado-suave: #f3e5ab;
             --texto-oscuro: #3d1c22;
         }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            -webkit-tap-highlight-color: transparent;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Montserrat', sans-serif;
             background-color: var(--rosa-pastel);
@@ -39,8 +25,6 @@
             overflow-x: hidden;
             line-height: 1.7;
         }
-
-        /* Botón Flotante de Música */
         .music-control {
             position: fixed;
             bottom: 20px;
@@ -51,21 +35,13 @@
             border: 2px solid var(--dorado);
             border-radius: 50px;
             padding: 12px 20px;
-            font-family: 'Montserrat', sans-serif;
             font-size: 0.9rem;
-            font-weight: 500;
             display: flex;
             align-items: center;
             gap: 8px;
             box-shadow: 0 6px 20px rgba(114, 17, 33, 0.35);
             cursor: pointer;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-
-        .music-control:active {
-            transform: scale(0.95);
-        }
-
         .music-pulse {
             width: 10px;
             height: 10px;
@@ -73,18 +49,12 @@
             border-radius: 50%;
             display: inline-block;
         }
-
-        .playing .music-pulse {
-            animation: pulse 1.2s infinite;
-        }
-
+        .playing .music-pulse { animation: pulse 1.2s infinite; }
         @keyframes pulse {
             0% { transform: scale(0.9); box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.7); }
             70% { transform: scale(1.2); box-shadow: 0 0 0 8px rgba(212, 175, 55, 0); }
             100% { transform: scale(0.9); box-shadow: 0 0 0 0 rgba(212, 175, 55, 0); }
         }
-
-        /* 1. PORTADA PRINCIPAL */
         .hero {
             position: relative;
             min-height: 100vh;
@@ -95,9 +65,7 @@
             text-align: center;
             padding: 30px 20px;
             background: radial-gradient(circle at center, #ffffff 0%, var(--rosa-pastel) 75%, var(--rosa-suave) 100%);
-            z-index: 2;
         }
-
         .hero-badge {
             font-size: 0.85rem;
             letter-spacing: 3px;
@@ -105,22 +73,13 @@
             color: var(--dorado);
             font-weight: 600;
             margin-bottom: 15px;
-            opacity: 0;
-            animation: fadeUp 1s ease forwards 0.3s;
         }
-
         .hero h1 {
             font-family: 'Great Vibes', cursive;
             font-size: clamp(3.2rem, 11vw, 5.5rem);
             color: var(--rojo-vino);
-            font-weight: 400;
-            line-height: 1.2;
             margin-bottom: 20px;
-            text-shadow: 0 2px 10px rgba(114, 17, 33, 0.1);
-            opacity: 0;
-            animation: fadeUp 1s ease forwards 0.6s;
         }
-
         .hero p {
             font-family: 'Cormorant Garamond', serif;
             font-size: clamp(1.25rem, 4.5vw, 1.6rem);
@@ -128,43 +87,18 @@
             max-width: 600px;
             margin-bottom: 40px;
             font-style: italic;
-            opacity: 0;
-            animation: fadeUp 1s ease forwards 0.9s;
         }
-
         .btn-open {
             background: linear-gradient(135deg, var(--rojo-vino), var(--rojo-vino-claro));
             color: #ffffff;
             border: 2px solid var(--dorado);
             padding: 18px 36px;
             font-size: 1.1rem;
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 500;
             border-radius: 50px;
             cursor: pointer;
             box-shadow: 0 10px 25px rgba(114, 17, 33, 0.3);
-            transition: all 0.4s ease;
-            opacity: 0;
-            animation: fadeUp 1s ease forwards 1.2s;
         }
-
-        @keyframes fadeUp {
-            from { opacity: 0; transform: translateY(25px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        #main-content {
-            display: none;
-            position: relative;
-            z-index: 2;
-        }
-
-        section {
-            padding: 70px 20px;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
+        #main-content { display: none; padding: 50px 20px; max-width: 900px; margin: 0 auto; }
         .section-title {
             font-family: 'Great Vibes', cursive;
             font-size: clamp(2.6rem, 8vw, 3.8rem);
@@ -172,50 +106,32 @@
             text-align: center;
             margin-bottom: 10px;
         }
-
         .section-divider {
             width: 80px;
             height: 2px;
             background: linear-gradient(90deg, transparent, var(--dorado), transparent);
             margin: 0 auto 40px auto;
         }
-
-        /* CARTA */
         .letter-paper {
             background-color: var(--blanco-crema);
-            background-image: radial-gradient(var(--rosa-suave) 0.5px, transparent 0.5px);
-            background-size: 20px 20px;
             padding: 45px 30px;
             border-radius: 16px;
             border: 1px solid rgba(212, 175, 55, 0.4);
             box-shadow: 0 15px 40px rgba(114, 17, 33, 0.08);
-            margin-bottom: 50px;
+            margin-bottom: 40px;
         }
-
         .letter-text p {
             font-family: 'Cormorant Garamond', serif;
-            font-size: clamp(1.22rem, 4.2vw, 1.38rem);
+            font-size: 1.3rem;
             color: #2c1418;
-            margin-bottom: 22px;
-            line-height: 1.85;
+            margin-bottom: 20px;
+            line-height: 1.8;
         }
-
-        .letter-signature {
-            margin-top: 35px;
-            text-align: right;
-            font-family: 'Great Vibes', cursive;
-            font-size: 2.2rem;
-            color: var(--rojo-vino);
-        }
-
-        /* GALERÍA DE FOTOS REALES */
         .polaroid-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 35px;
-            padding: 10px;
+            gap: 30px;
         }
-
         .polaroid-card {
             background: #ffffff;
             padding: 15px 15px 25px 15px;
@@ -223,53 +139,42 @@
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
             border: 1px solid rgba(212, 175, 55, 0.25);
         }
-
-        .polaroid-card:nth-child(odd) { transform: rotate(-1.5deg); }
-        .polaroid-card:nth-child(even) { transform: rotate(1.5deg); }
-
         .polaroid-img-wrapper {
             width: 100%;
             aspect-ratio: 4 / 5;
             background-color: #f8e8ec;
             overflow: hidden;
         }
-
         .polaroid-img-wrapper img {
             width: 100%;
             height: 100%;
             object-fit: cover;
             display: block;
         }
-
         .polaroid-caption {
             font-family: 'Cormorant Garamond', serif;
             font-size: 1.2rem;
             font-style: italic;
-            font-weight: 600;
-            color: var(--texto-oscuro);
             text-align: center;
-            margin-top: 16px;
+            margin-top: 15px;
+            color: var(--texto-oscuro);
         }
-
         footer {
             text-align: center;
             padding: 30px;
             background-color: var(--rojo-vino);
             color: var(--blanco-crema);
             margin-top: 50px;
-            font-size: 0.9rem;
         }
     </style>
 </head>
 <body>
 
-    <!-- Audio de Fondo con tu archivo exacto -->
     <audio id="bg-music" loop>
         <source src="@coldplay Yellow (Lyrics).m4a" type="audio/mp4">
     </audio>
 
-    <!-- Botón de Música Flotante -->
-    <button class="music-control" id="music-btn" onclick="toggleMusic()">
+    <button class="music-control" id="music-btn" onclick="toggleMusic()" style="display:none;">
         <span class="music-pulse"></span>
         <span id="music-text">Reproducir música</span>
     </button>
@@ -282,57 +187,48 @@
     </header>
 
     <div id="main-content">
-        <section>
-            <h2 class="section-title">Para Alguien Muy Especial</h2>
-            <div class="section-divider"></div>
-            
-            <div class="letter-paper">
-                <div class="letter-text">
-                    <p>Querida Diana,</p>
-                    <p>Hoy en tu cumpleaños quiero recordarte lo increíble que eres. Que este nuevo año esté lleno de momentos inolvidables, sonrisas sinceras y metas cumplidas.</p>
-                    <p>Disfruta cada segundo de este día pensado especialmente para ti.</p>
-                </div>
-                <div class="letter-signature">Con todo mi cariño</div>
+        <h2 class="section-title">Para Alguien Muy Especial</h2>
+        <div class="section-divider"></div>
+        
+        <div class="letter-paper">
+            <div class="letter-text">
+                <p>Querida Diana,</p>
+                <p>Hoy en tu cumpleaños quiero recordarte lo increíble que eres. Que este nuevo año esté lleno de momentos inolvidables, sonrisas sinceras y metas cumplidas.</p>
             </div>
+        </div>
 
-            <!-- Galería con tus fotos reales de GitHub -->
-            <div class="polaroid-grid">
-                <div class="polaroid-card">
-                    <div class="polaroid-img-wrapper">
-                        <img src="IMG-20251208-WA0010.jpg" alt="Foto especial 1">
-                    </div>
-                    <div class="polaroid-caption">Momentos inolvidables</div>
+        <div class="polaroid-grid">
+            <div class="polaroid-card">
+                <div class="polaroid-img-wrapper">
+                    <img src="IMG-20251208-WA0010.jpg" alt="Foto 1">
                 </div>
-
-                <div class="polaroid-card">
-                    <div class="polaroid-img-wrapper">
-                        <img src="IMG-20260927-WA0016.jpg" alt="Foto especial 2">
-                    </div>
-                    <div class="polaroid-caption">Sonrisas que iluminan</div>
-                </div>
-
-                <div class="polaroid-card">
-                    <div class="polaroid-img-wrapper">
-                        <img src="IMG-20260927-WA0053.jpg" alt="Foto especial 3">
-                    </div>
-                    <div class="polaroid-caption">A tu lado todo es mejor</div>
-                </div>
-
-                <div class="polaroid-card">
-                    <div class="polaroid-img-wrapper">
-                        <img src="IMG_20251208_184717_807.webp" alt="Foto especial 4">
-                    </div>
-                    <div class="polaroid-caption">Nuestro lugar favorito</div>
-                </div>
-
-                <div class="polaroid-card">
-                    <div class="polaroid-img-wrapper">
-                        <img src="IMG_20260102_194923_263.webp" alt="Foto especial 5">
-                    </div>
-                    <div class="polaroid-caption">Siempre juntos</div>
-                </div>
+                <div class="polaroid-caption">Momentos inolvidables</div>
             </div>
-        </section>
+            <div class="polaroid-card">
+                <div class="polaroid-img-wrapper">
+                    <img src="IMG-20260927-WA0016.jpg" alt="Foto 2">
+                </div>
+                <div class="polaroid-caption">Sonrisas que iluminan</div>
+            </div>
+            <div class="polaroid-card">
+                <div class="polaroid-img-wrapper">
+                    <img src="IMG-20260927-WA0053.jpg" alt="Foto 3">
+                </div>
+                <div class="polaroid-caption">A tu lado todo es mejor</div>
+            </div>
+            <div class="polaroid-card">
+                <div class="polaroid-img-wrapper">
+                    <img src="IMG_20251208_184717_807.webp" alt="Foto 4">
+                </div>
+                <div class="polaroid-caption">Nuestro lugar favorito</div>
+            </div>
+            <div class="polaroid-card">
+                <div class="polaroid-img-wrapper">
+                    <img src="IMG_20260102_194923_263.webp" alt="Foto 5">
+                </div>
+                <div class="polaroid-caption">Siempre juntos</div>
+            </div>
+        </div>
 
         <footer>
             <p>Hecho con mucho cariño para ti ❤️</p>
@@ -349,9 +245,7 @@
             music.play().then(() => {
                 musicBtn.classList.add('playing');
                 musicText.innerText = 'Pausar música';
-            }).catch(e => {
-                console.log("Audio autoplay blocked");
-            });
+            }).catch(e => { console.log("Audio autoplay blocked"); });
             musicBtn.style.display = 'flex';
             window.scrollTo({ top: window.innerHeight, behavior: 'smooth' });
         }
@@ -370,3 +264,4 @@
     </script>
 </body>
 </html>
+
