@@ -1,0 +1,1104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feliz Cumpleaños, Diana ❤️</title>
+    <!-- Fuentes románticas y legibles de Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Great+Vibes&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --rosa-pastel: #fff0f3;
+            --rosa-suave: #ffccd5;
+            --blanco-crema: #fffafb;
+            --rojo-vino: #721121;
+            --rojo-vino-claro: #9e1b32;
+            --dorado: #d4af37;
+            --dorado-suave: #f3e5ab;
+            --texto-oscuro: #3d1c22;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--rosa-pastel);
+            color: var(--texto-oscuro);
+            overflow-x: hidden;
+            line-height: 1.7;
+        }
+
+        /* Canvas de Partículas / Corazones flotantes */
+        #particles-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Botón Flotante de Música */
+        .music-control {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: linear-gradient(135deg, var(--rojo-vino), var(--rojo-vino-claro));
+            color: #fff;
+            border: 2px solid var(--dorado);
+            border-radius: 50px;
+            padding: 12px 20px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 500;
+            display: none; /* Se muestra al abrir el regalo */
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 6px 20px rgba(114, 17, 33, 0.35);
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .music-control:active {
+            transform: scale(0.95);
+        }
+
+        .music-pulse {
+            width: 10px;
+            height: 10px;
+            background-color: var(--dorado);
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .playing .music-pulse {
+            animation: pulse 1.2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(0.9); box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.7); }
+            70% { transform: scale(1.2); box-shadow: 0 0 0 8px rgba(212, 175, 55, 0); }
+            100% { transform: scale(0.9); box-shadow: 0 0 0 0 rgba(212, 175, 55, 0); }
+        }
+
+        /* 1. PORTADA PRINCIPAL */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 30px 20px;
+            background: radial-gradient(circle at center, #ffffff 0%, var(--rosa-pastel) 75%, var(--rosa-suave) 100%);
+            z-index: 2;
+        }
+
+        .hero-badge {
+            font-size: 0.85rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--dorado);
+            font-weight: 600;
+            margin-bottom: 15px;
+            opacity: 0;
+            animation: fadeUp 1s ease forwards 0.3s;
+        }
+
+        .hero h1 {
+            font-family: 'Great Vibes', cursive;
+            font-size: clamp(3.2rem, 11vw, 5.5rem);
+            color: var(--rojo-vino);
+            font-weight: 400;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 10px rgba(114, 17, 33, 0.1);
+            opacity: 0;
+            animation: fadeUp 1s ease forwards 0.6s;
+        }
+
+        .hero p {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(1.25rem, 4.5vw, 1.6rem);
+            color: var(--texto-oscuro);
+            max-width: 600px;
+            margin-bottom: 40px;
+            font-style: italic;
+            opacity: 0;
+            animation: fadeUp 1s ease forwards 0.9s;
+        }
+
+        .btn-open {
+            background: linear-gradient(135deg, var(--rojo-vino), var(--rojo-vino-claro));
+            color: #ffffff;
+            border: 2px solid var(--dorado);
+            padding: 18px 36px;
+            font-size: 1.1rem;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 500;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 10px 25px rgba(114, 17, 33, 0.3);
+            transition: all 0.4s ease;
+            opacity: 0;
+            animation: fadeUp 1s ease forwards 1.2s;
+        }
+
+        .btn-open:hover, .btn-open:active {
+            transform: translateY(-3px) scale(1.03);
+            box-shadow: 0 15px 30px rgba(114, 17, 33, 0.4);
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(25px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Contenedor Principal (Oculto hasta pulsar el botón) */
+        #main-content {
+            display: none;
+            position: relative;
+            z-index: 2;
+        }
+
+        section {
+            padding: 70px 20px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-family: 'Great Vibes', cursive;
+            font-size: clamp(2.6rem, 8vw, 3.8rem);
+            color: var(--rojo-vino);
+            text-align: center;
+            margin-bottom: 10px;
+            font-weight: 400;
+        }
+
+        .section-divider {
+            width: 80px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--dorado), transparent);
+            margin: 0 auto 40px auto;
+        }
+
+        /* Animación Reveal al hacer Scroll */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.9s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* 2. NUESTRA CARTA */
+        .letter-paper {
+            background-color: var(--blanco-crema);
+            background-image: radial-gradient(var(--rosa-suave) 0.5px, transparent 0.5px);
+            background-size: 20px 20px;
+            padding: 45px 30px;
+            border-radius: 16px;
+            border: 1px solid rgba(212, 175, 55, 0.4);
+            box-shadow: 0 15px 40px rgba(114, 17, 33, 0.08);
+            position: relative;
+        }
+
+        .letter-paper::before {
+            content: '❝';
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 4rem;
+            color: rgba(212, 175, 55, 0.35);
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            line-height: 1;
+        }
+
+        .letter-text p {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(1.22rem, 4.2vw, 1.38rem);
+            color: #2c1418;
+            margin-bottom: 22px;
+            line-height: 1.85;
+            text-align: left;
+        }
+
+        .letter-text p:first-child {
+            font-weight: 700;
+            font-size: 1.45rem;
+            color: var(--rojo-vino);
+        }
+
+        .letter-signature {
+            margin-top: 35px;
+            text-align: right;
+            font-family: 'Great Vibes', cursive;
+            font-size: 2.2rem;
+            color: var(--rojo-vino);
+        }
+
+        /* 3. GALERÍA POLAROID */
+        .polaroid-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 35px;
+            padding: 10px;
+        }
+
+        .polaroid-card {
+            background: #ffffff;
+            padding: 15px 15px 25px 15px;
+            border-radius: 4px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+            border: 1px solid rgba(212, 175, 55, 0.25);
+            cursor: pointer;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .polaroid-card:nth-child(1) { transform: rotate(-2.5deg); }
+        .polaroid-card:nth-child(2) { transform: rotate(2deg); }
+        .polaroid-card:nth-child(3) { transform: rotate(-1.5deg); }
+        .polaroid-card:nth-child(4) { transform: rotate(2.5deg); }
+        .polaroid-card:nth-child(5) { transform: rotate(-2deg); }
+
+        .polaroid-card:hover, .polaroid-card:active {
+            transform: rotate(0deg) scale(1.03);
+            box-shadow: 0 15px 35px rgba(114, 17, 33, 0.2);
+            z-index: 5;
+        }
+
+        .polaroid-img-wrapper {
+            width: 100%;
+            aspect-ratio: 4 / 5;
+            background-color: #f8e8ec;
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .polaroid-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .polaroid-placeholder {
+            text-align: center;
+            padding: 20px;
+            color: var(--rojo-vino);
+            font-size: 0.9rem;
+            display: none;
+        }
+
+        .polaroid-caption {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.2rem;
+            font-style: italic;
+            font-weight: 600;
+            color: var(--texto-oscuro);
+            text-align: center;
+            margin-top: 16px;
+        }
+
+        .tap-hint {
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--rojo-vino-claro);
+            margin-bottom: 25px;
+            opacity: 0.8;
+        }
+
+        /* Modal para ampliar fotos */
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(25, 5, 10, 0.92);
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding: 20px;
+        }
+
+        .lightbox img {
+            max-width: 95%;
+            max-height: 75vh;
+            border: 8px solid #fff;
+            border-radius: 4px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+        }
+
+        .lightbox-caption {
+            color: #fff;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.4rem;
+            font-style: italic;
+            margin-top: 15px;
+            text-align: center;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            color: #fff;
+            font-size: 2.2rem;
+            cursor: pointer;
+            background: none;
+            border: none;
+        }
+
+        /* 4. SEIS RAZONES POR LAS QUE ERES ESPECIAL (Flip Cards) */
+        .reasons-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 22px;
+        }
+
+        .flip-card {
+            background-color: transparent;
+            height: 220px;
+            perspective: 1000px;
+            cursor: pointer;
+        }
+
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.7s cubic-bezier(0.4, 0.2, 0.2, 1);
+            transform-style: preserve-3d;
+        }
+
+        .flip-card.flipped .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .flip-card-front, .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            border-radius: 16px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 25px;
+            box-shadow: 0 8px 25px rgba(114, 17, 33, 0.1);
+        }
+
+        .flip-card-front {
+            background: linear-gradient(145deg, #ffffff, var(--rosa-pastel));
+            border: 1.5px solid var(--dorado);
+            color: var(--rojo-vino);
+        }
+
+        .reason-number {
+            font-family: 'Great Vibes', cursive;
+            font-size: 2.5rem;
+            color: var(--dorado);
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+
+        .flip-card-front p {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+
+        .flip-card-front span {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-top: 12px;
+            color: var(--rojo-vino-claro);
+            opacity: 0.75;
+        }
+
+        .flip-card-back {
+            background: linear-gradient(135deg, var(--rojo-vino), var(--rojo-vino-claro));
+            color: #ffffff;
+            border: 1.5px solid var(--dorado);
+            transform: rotateY(180deg);
+        }
+
+        .flip-card-back p {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.25rem;
+            line-height: 1.5;
+        }
+
+        /* 5. SECCIÓN ESPECIAL: 19 DE DICIEMBRE */
+        .special-date-section {
+            background: linear-gradient(135deg, #4a0a14 0%, var(--rojo-vino) 50%, #5c0d1a 100%);
+            color: #ffffff;
+            border-radius: 24px;
+            padding: 60px 25px;
+            margin: 40px 20px;
+            text-align: center;
+            border: 2px solid var(--dorado);
+            box-shadow: 0 20px 50px rgba(114, 17, 33, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        @media (min-width: 940px) {
+            .special-date-section {
+                margin: 40px auto;
+            }
+        }
+
+        .timeline-badge {
+            display: inline-block;
+            border: 1px solid var(--dorado);
+            color: var(--dorado-suave);
+            padding: 6px 18px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        .special-date-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2rem, 7vw, 3.2rem);
+            font-weight: 700;
+            color: var(--dorado);
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        .special-date-subtitle {
+            font-family: 'Great Vibes', cursive;
+            font-size: clamp(2.2rem, 7vw, 3rem);
+            color: #ffffff;
+            margin-bottom: 25px;
+        }
+
+        .timeline-line {
+            width: 2px;
+            height: 45px;
+            background: linear-gradient(to bottom, var(--dorado), transparent);
+            margin: 0 auto 25px auto;
+        }
+
+        .special-date-quote {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(1.3rem, 4.5vw, 1.65rem);
+            font-style: italic;
+            max-width: 650px;
+            margin: 0 auto;
+            color: var(--rosa-pastel);
+            line-height: 1.7;
+        }
+
+        /* 6. CUPÓN DE REGALO */
+        .coupon-wrapper {
+            max-width: 650px;
+            margin: 0 auto;
+        }
+
+        .coupon-card {
+            background: linear-gradient(135deg, #ffffff 0%, #fff8fa 100%);
+            border: 2px dashed var(--dorado);
+            border-radius: 20px;
+            padding: 35px 25px;
+            position: relative;
+            box-shadow: 0 15px 35px rgba(212, 175, 55, 0.2);
+            outline: 6px solid #ffffff;
+        }
+
+        .coupon-header {
+            text-align: center;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.4);
+            padding-bottom: 20px;
+            margin-bottom: 25px;
+        }
+
+        .coupon-tag {
+            background-color: var(--dorado);
+            color: #fff;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            padding: 5px 14px;
+            border-radius: 20px;
+            text-transform: uppercase;
+        }
+
+        .coupon-header h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(1.6rem, 5.5vw, 2.2rem);
+            color: var(--rojo-vino);
+            margin-top: 15px;
+            font-weight: 700;
+        }
+
+        .coupon-includes-title {
+            font-weight: 600;
+            color: var(--rojo-vino);
+            margin-bottom: 15px;
+            font-size: 1rem;
+        }
+
+        .coupon-list {
+            list-style: none;
+            margin-bottom: 25px;
+        }
+
+        .coupon-list li {
+            position: relative;
+            padding-left: 28px;
+            margin-bottom: 12px;
+            font-size: 1.02rem;
+            color: var(--texto-oscuro);
+        }
+
+        .coupon-list li::before {
+            content: '✦';
+            position: absolute;
+            left: 0;
+            color: var(--dorado);
+            font-size: 1.1rem;
+        }
+
+        .coupon-footer {
+            background-color: var(--rosa-pastel);
+            padding: 18px;
+            border-radius: 12px;
+            text-align: center;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+        }
+
+        .coupon-footer p {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: var(--rojo-vino);
+            margin-bottom: 5px;
+        }
+
+        .coupon-footer span {
+            font-size: 0.85rem;
+            color: var(--rojo-vino-claro);
+            font-style: italic;
+        }
+
+        /* 7. SORPRESA FINAL */
+        .final-surprise {
+            text-align: center;
+            padding: 80px 20px 110px 20px;
+            background: radial-gradient(circle at center, #ffffff 0%, var(--rosa-pastel) 100%);
+            border-top: 1px solid rgba(212, 175, 55, 0.3);
+        }
+
+        .final-heart {
+            font-size: 3rem;
+            display: inline-block;
+            animation: heartbeat 1.5s infinite;
+            margin-bottom: 20px;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.18); }
+        }
+
+        .final-quote {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(1.5rem, 5vw, 2.1rem);
+            color: var(--rojo-vino);
+            font-weight: 600;
+            max-width: 700px;
+            margin: 0 auto 25px auto;
+            line-height: 1.6;
+        }
+
+        .final-subquote {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(1.2rem, 4vw, 1.5rem);
+            font-style: italic;
+            color: var(--texto-oscuro);
+            max-width: 600px;
+            margin: 0 auto 35px auto;
+        }
+
+        .btn-petals {
+            background: transparent;
+            color: var(--rojo-vino);
+            border: 1.5px solid var(--rojo-vino);
+            padding: 12px 26px;
+            border-radius: 50px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-petals:hover, .btn-petals:active {
+            background: var(--rojo-vino);
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- =================================================================
+         ESPACIO PARA LA MÚSICA DE FONDO
+         Guarda tu canción en la misma carpeta con el nombre: yellow.mp3
+         ================================================================= -->
+    <audio id="bg-music" loop preload="auto">
+        <source src="yellow.mp3" type="audio/mpeg">
+        Tu navegador no soporta el elemento de audio.
+    </audio>
+
+    <!-- Botón flotante para pausar/reproducir música -->
+    <button id="music-btn" class="music-control" onclick="toggleMusic()">
+        <span class="music-pulse"></span>
+        <span id="music-label">Pausar música</span>
+    </button>
+
+    <!-- Lienzo de corazones y destellos -->
+    <canvas id="particles-canvas"></canvas>
+
+    <!-- 1. PORTADA PRINCIPAL -->
+    <header class="hero" id="portada">
+        <div class="hero-badge">Edición Especial • 19 Años</div>
+        <h1>Feliz cumpleaños, mi niña. ❤️</h1>
+        <p>Un pequeño rincón hecho para ti, porque hay personas que merecen algo más que un simple regalo.</p>
+        <button class="btn-open" onclick="openGift()">Abrir mi regalo ❤️</button>
+    </header>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main id="main-content">
+
+        <!-- 2. NUESTRA CARTA -->
+        <section id="carta" class="reveal">
+            <h2 class="section-title">Para ti, mi amor</h2>
+            <div class="section-divider"></div>
+            <div class="letter-paper">
+                <div class="letter-text">
+                    <p>Holaaa, amore mío... ❤️</p>
+                    <p>Para tu cumpleaños quería darte algo diferente. Ya pasó casi una semana, pero bueno... 😅 No sé si te vaya a gustar, pero espero que sí.</p>
+                    <p>Quería darte algo que no pudieras guardar simplemente en una caja, sino que pudieras visitar cada vez que quisieras recordar lo bonito que hemos construido juntos.</p>
+                    <p>Todavía recuerdo aquel 19 de diciembre de 2024... nuestro primer beso. Qué curioso que una fecha que comenzó siendo un recuerdo terminara convirtiéndose en una de las fechas más especiales de mi vida.</p>
+                    <p>Quiero que sepas que me encanta tenerte en mi vida. Me gustan tus detalles, tus ocurrencias, tu manera de ser y hasta esas pequeñas cosas que probablemente tú ni siquiera notas... pero que yo sí.</p>
+                    <p>No necesito que todo sea perfecto para querer seguir creando recuerdos contigo. Quiero más fotografías, más abrazos, más salidas, más risas, más momentos inesperados y muchísimas fechas que algún día podamos recordar con una sonrisa.</p>
+                    <p>Y es que es tanto el amor que te tengo que por cualquier cosa que te pase me preocupo como no tienes idea... Cuando tuviste tu accidente reflexioné mucho sobre todo el amor que te tengo. Pensé en que pude haberte perdido y, sinceramente, no sé qué habría hecho... Pero Dios metió su mano y afortunadamente estás aquí, cumpliendo un año más de vida. No sabes lo agradecido que estoy por eso.</p>
+                    <p>Hoy cumples tus 19 años y, apenas tres días después, cumplimos un año y nueve meses... Todavía no sé cómo pronunciarlo sin que suene medio raro. JAJAJA. 😅</p>
+                    <p>Realmente eres la persona con la que quiero estar. Te daría mi corazón de ser necesario, solo para que estés bien... porque el amor que te tengo es más inmenso que cualquier otra cosa en el mundo.</p>
+                    <p>Aún me cuesta creer que Dios haya puesto en mi vida a una persona como tú. A veces pienso en lo curioso que es todo, en cómo alguien que al principio ni siquiera me caía tan bien terminó convirtiéndose en alguien tan importante para mí... No sé si algún día termine de comprenderlo, pero sí puedo asegurarte algo: te amo más que a nada en el mundo.</p>
+                    <p>Cada momento contigo ha sido bastante hermoso... Desde aquel comando en el que me di cuenta de que irías a mi lado en el bus, incluso cayéndome un poquito mal. 😅 La primera vez que salimos juntos y llegué como pollito bañado, ese mismo día que estaba cagado del miedo por conocer a tu mamá... La primera vez que fuiste a Tunja, el día que conocí al resto de tu familia, cuando también estaba cagado del miedo... Cuando fuimos a Puente de Boyacá, las veces que me has apoyado, cuando falleció mi abuelita y estuviste ahí, cuando me has ayudado a tomar decisiones que por mi propia cuenta probablemente no habría tomado, cuando fuimos de paseo con toda tu familia e incluso cuando me terminaste.</p>
+                    <p>Y mira dónde estamos ahora... Cuántas cosas han pasado desde entonces y cuántos recuerdos hemos acumulado. Algunos mejores que otros, pero todos forman parte de nuestra historia.</p>
+                    <p>También recuerdo esos pequeños detalles que quizás para otras personas no significarían demasiado, pero para mí sí... Las veces que has hecho el esfuerzo de venir a verme, tus regalos, tus atenciones y esas maneras tan tuyas de demostrarme cariño. Créeme que valoro mucho más de lo que a veces logro expresar.</p>
+                    <p>Hasta este momento, en el que estás cumpliendo tus 19 años, puedo decirte que me siento afortunado de compartir mi vida contigo.</p>
+                    <p>Quizás nuestra relación no sea cosa fácil, pero tampoco quiero que se trate de que todo sea fácil... Quiero que cada día que pase podamos seguir eligiéndonos, aprendiendo el uno del otro y encontrando nuevas razones para amarnos incluso más que el día anterior.</p>
+                    <p>Porque tú has hecho muchos cambios en mi vida y no me doy a la idea de darme la oportunidad de conocer a otra persona... Estoy tan acostumbrado a ti que no pienso en aprender los gustos de alguien más, ponerme a discutir con alguien más sobre cuál jugo Hit es mejor o sobre por qué la señora no se baña. JAJAJA. No me sentiría cómodo compartiendo esas pequeñas tonterías con alguien más, porque son cosas que quiero seguir compartiendo contigo.</p>
+                    <p>Pero bueno... esto no trata de mí, sino de ti.</p>
+                    <p>Quiero que sepas que me siento orgulloso de cada paso que das, de cada esfuerzo que haces y de cada cosa que consigues. Me alegra verte crecer, luchar por lo que quieres y seguir construyendo tu propio camino... Quizás no siempre encuentre las palabras adecuadas para decírtelo, pero admiro muchísimo la persona que eres.</p>
+                    <p>Me siento bien estando contigo y espero que esto siga siendo así por muchísimos años más... No sé qué nos tenga preparado la vida, pero sí sé que, mientras podamos, quiero seguir construyendo esta historia a tu lado.</p>
+                    <p>Deseo de corazón que la vida te regale muchísimas razones para sonreír, que cumplas tus sueños, que nunca te falten motivos para sentirte orgullosa de ti misma y que jamás olvides lo valiosa y especial que eres.</p>
+                    <p>Ojalá pudiera envolver todos los momentos bonitos que quiero vivir contigo y entregártelos como regalo... Ojalá pudiera mostrarte por un instante cómo te veo a través de mis ojos, para que entiendas lo mucho que significas para mí.</p>
+                    <p>Y si algo quiero pedirte hoy es que nunca dejes de ser tú, que sigas persiguiendo tus sueños y que nunca dudes de lo mucho que vales.</p>
+                    <p>Feliz cumpleaños, mi amor... Gracias por formar parte de mi historia y permitirme formar parte de la tuya.</p>
+                    <p>Por tus 19 años, por nuestro año y nueve meses, por aquel 19 de diciembre y por todos los momentos que todavía nos faltan por vivir...</p>
+                    <p>Te amo muchísimo, mi niña. ❤️</p>
+                </div>
+                <div class="letter-signature">Con amor, tu niño.</div>
+            </div>
+        </section>
+
+        <!-- =================================================================
+             3. GALERÍA DE FOTOGRAFÍAS POLAROID
+             Guarda tus imágenes en la misma carpeta como:
+             foto1.jpg, foto2.jpg, foto3.jpg, foto4.jpg y foto5.jpg
+             ================================================================= -->
+        <section id="galeria" class="reveal">
+            <h2 class="section-title">Nuestros Recuerdos</h2>
+            <div class="section-divider"></div>
+            <p class="tap-hint">✨ Toca cualquier fotografía para verla en grande</p>
+
+            <div class="polaroid-grid">
+                <!-- FOTO 1 -->
+                <div class="polaroid-card" onclick="openLightbox('foto1.jpg', 'Un recuerdo que siempre llevaré conmigo.')">
+                    <div class="polaroid-img-wrapper">
+                        <img src="foto1.jpg" alt="Foto 1" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <div class="polaroid-placeholder">❤️<br>Aquí irá <strong>foto1.jpg</strong></div>
+                    </div>
+                    <p class="polaroid-caption">Un recuerdo que siempre llevaré conmigo.</p>
+                </div>
+
+                <!-- FOTO 2 -->
+                <div class="polaroid-card" onclick="openLightbox('foto2.jpg', 'De esos momentos que quisiera repetir.')">
+                    <div class="polaroid-img-wrapper">
+                        <img src="foto2.jpg" alt="Foto 2" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <div class="polaroid-placeholder">❤️<br>Aquí irá <strong>foto2.jpg</strong></div>
+                    </div>
+                    <p class="polaroid-caption">De esos momentos que quisiera repetir.</p>
+                </div>
+
+                <!-- FOTO 3 -->
+                <div class="polaroid-card" onclick="openLightbox('foto3.jpg', 'Mi lugar favorito es a tu lado.')">
+                    <div class="polaroid-img-wrapper">
+                        <img src="foto3.jpg" alt="Foto 3" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <div class="polaroid-placeholder">❤️<br>Aquí irá <strong>foto3.jpg</strong></div>
+                    </div>
+                    <p class="polaroid-caption">Mi lugar favorito es a tu lado.</p>
+                </div>
+
+                <!-- FOTO 4 -->
+                <div class="polaroid-card" onclick="openLightbox('foto4.jpg', 'Nosotros, y eso es lo bonito.')">
+                    <div class="polaroid-img-wrapper">
+                        <img src="foto4.jpg" alt="Foto 4" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <div class="polaroid-placeholder">❤️<br>Aquí irá <strong>foto4.jpg</strong></div>
+                    </div>
+                    <p class="polaroid-caption">Nosotros, y eso es lo bonito.</p>
+                </div>
+
+                <!-- FOTO 5 -->
+                <div class="polaroid-card" onclick="openLightbox('foto5.jpg', 'Por todas las fotografías que todavía nos faltan.')">
+                    <div class="polaroid-img-wrapper">
+                        <img src="foto5.jpg" alt="Foto 5" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <div class="polaroid-placeholder">❤️<br>Aquí irá <strong>foto5.jpg</strong></div>
+                    </div>
+                    <p class="polaroid-caption">Por todas las fotografías que todavía nos faltan.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. SEIS RAZONES POR LAS QUE ERES ESPECIAL -->
+        <section id="razones" class="reveal">
+            <h2 class="section-title">Seis razones por las que eres especial</h2>
+            <div class="section-divider"></div>
+            <p class="tap-hint">✨ Toca cada tarjeta para descubrirla</p>
+
+            <div class="reasons-grid">
+                <!-- Razón 1 -->
+                <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="reason-number">01 ❤️</div>
+                            <p>¿Sabes por qué eres tan especial?</p>
+                            <span>Toca para voltear</span>
+                        </div>
+                        <div class="flip-card-back">
+                            <p>Porque tienes una manera única de hacer especiales hasta los momentos más sencillos.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Razón 2 -->
+                <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="reason-number">02 ❤️</div>
+                            <p>¿Sabes por qué eres tan especial?</p>
+                            <span>Toca para voltear</span>
+                        </div>
+                        <div class="flip-card-back">
+                            <p>Porque tu sonrisa puede alegrarme incluso los días más pesados.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Razón 3 -->
+                <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="reason-number">03 ❤️</div>
+                            <p>¿Sabes por qué eres tan especial?</p>
+                            <span>Toca para voltear</span>
+                        </div>
+                        <div class="flip-card-back">
+                            <p>Porque me encanta tu forma de ser, incluso esas pequeñas cosas que te hacen diferente.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Razón 4 -->
+                <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="reason-number">04 ❤️</div>
+                            <p>¿Sabes por qué eres tan especial?</p>
+                            <span>Toca para voltear</span>
+                        </div>
+                        <div class="flip-card-back">
+                            <p>Porque contigo he vivido recuerdos que guardo con muchísimo cariño.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Razón 5 -->
+                <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="reason-number">05 ❤️</div>
+                            <p>¿Sabes por qué eres tan especial?</p>
+                            <span>Toca para voltear</span>
+                        </div>
+                        <div class="flip-card-back">
+                            <p>Porque tienes una manera de quedarte en mis pensamientos sin siquiera intentarlo.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Razón 6 -->
+                <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="reason-number">06 ❤️</div>
+                            <p>¿Sabes por qué eres tan especial?</p>
+                            <span>Toca para voltear</span>
+                        </div>
+                        <div class="flip-card-back">
+                            <p>Porque, entre tantas personas, tengo la fortuna de compartir esta historia contigo.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. SECCIÓN ESPECIAL: 19 DE DICIEMBRE -->
+        <div class="special-date-section reveal">
+            <div class="timeline-badge">El inicio de nuestra historia</div>
+            <h2 class="special-date-title">19 DE DICIEMBRE DE 2024</h2>
+            <div class="special-date-subtitle">Nuestro primer beso</div>
+            <div class="timeline-line"></div>
+            <p class="special-date-quote">
+                «Quién diría que aquel primer beso terminaría convirtiéndose en uno de los recuerdos más bonitos de mi vida...»
+            </p>
+        </div>
+
+        <!-- 6. CUPÓN DE REGALO -->
+        <section id="cupon" class="reveal">
+            <h2 class="section-title">Un detalle para ti</h2>
+            <div class="section-divider"></div>
+
+            <div class="coupon-wrapper">
+                <div class="coupon-card">
+                    <div class="coupon-header">
+                        <span class="coupon-tag">Cupón Oficial • Edición Cumpleaños</span>
+                        <h3>VALE POR UNA CITA ESPECIAL EN BOGOTÁ ❤️</h3>
+                    </div>
+
+                    <p class="coupon-includes-title">Este cupón incluye:</p>
+                    <ul class="coupon-list">
+                        <li>Una salida juntos a donde tú quieras.</li>
+                        <li>Una comida rica para disfrutar sin afanes.</li>
+                        <li>Un día para consentirte y hacerte sentir especial.</li>
+                        <li>Fotografías, abrazos y recuerdos nuevos.</li>
+                    </ul>
+
+                    <div class="coupon-footer">
+                        <p>Válido para mi niña, sin fecha de vencimiento y con amor ilimitado.</p>
+                        <span>Canjeable por un día inolvidable juntos.</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 7. SORPRESA FINAL -->
+        <footer class="final-surprise reveal">
+            <div class="final-heart">❤️</div>
+            <p class="final-quote">
+                «Y si pudiera volver a aquel 19 de diciembre... volvería a elegir ese primer beso, porque me llevó hasta ti. ❤️»
+            </p>
+            <p class="final-subquote">
+                «Feliz cumpleaños, mi niña. Por esta historia y por todas las páginas que todavía nos faltan por escribir...»
+            </p>
+            <button class="btn-petals" onclick="burstHearts()">Lanzar más corazones ✨</button>
+        </footer>
+
+    </main>
+
+    <!-- Visor de imagen ampliada -->
+    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+        <button class="lightbox-close">&times;</button>
+        <img id="lightbox-img" src="" alt="Recuerdo ampliado">
+        <p id="lightbox-caption" class="lightbox-caption"></p>
+    </div>
+
+    <script>
+        const audio = document.getElementById('bg-music');
+        const musicBtn = document.getElementById('music-btn');
+        const musicLabel = document.getElementById('music-label');
+        let isPlaying = false;
+
+        // Abrir regalo (Muestra contenido y arranca música tras interacción)
+        function openGift() {
+            const mainContent = document.getElementById('main-content');
+            mainContent.style.display = 'block';
+            musicBtn.style.display = 'flex';
+
+            // Intentar reproducir la música (funciona porque el usuario tocó el botón)
+            audio.play().then(() => {
+                isPlaying = true;
+                musicBtn.classList.add('playing');
+                musicLabel.textContent = 'Pausar música';
+            }).catch(() => {
+                // Si el archivo aún no está subido o el navegador bloquea, queda listo para tocar
+                isPlaying = false;
+                musicBtn.classList.remove('playing');
+                musicLabel.textContent = 'Reproducir música';
+            });
+
+            burstHearts();
+
+            // Desplazar suavemente hacia la carta
+            setTimeout(() => {
+                document.getElementById('carta').scrollIntoView({ behavior: 'smooth' });
+                checkReveal();
+            }, 150);
+        }
+
+        // Control manual de música
+        function toggleMusic() {
+            if (isPlaying) {
+                audio.pause();
+                isPlaying = false;
+                musicBtn.classList.remove('playing');
+                musicLabel.textContent = 'Reproducir música';
+            } else {
+                audio.play();
+                isPlaying = true;
+                musicBtn.classList.add('playing');
+                musicLabel.textContent = 'Pausar música';
+            }
+        }
+
+        // Ampliar fotografías Polaroid
+        function openLightbox(src, caption) {
+            const lightbox = document.getElementById('lightbox');
+            const img = document.getElementById('lightbox-img');
+            const cap = document.getElementById('lightbox-caption');
+            img.src = src;
+            cap.textContent = caption;
+            lightbox.style.display = 'flex';
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').style.display = 'none';
+        }
+
+        // Animación al hacer scroll
+        function checkReveal() {
+            const reveals = document.querySelectorAll('.reveal');
+            for (let i = 0; i < reveals.length; i++) {
+                const windowHeight = window.innerHeight;
+                const elementTop = reveals[i].getBoundingClientRect().top;
+                const elementVisible = 80;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add('active');
+                }
+            }
+        }
+
+        window.addEventListener('scroll', checkReveal);
+
+        // Sistema de partículas (Corazones y destellos dorados)
+        const canvas = document.getElementById('particles-canvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        class Particle {
+            constructor(burst = false) {
+                this.x = burst ? canvas.width / 2 + (Math.random() - 0.5) * 150 : Math.random() * canvas.width;
+                this.y = burst ? canvas.height / 2 : Math.random() * canvas.height;
+                this.size = Math.random() * 10 + 6;
+                this.speedY = burst ? (Math.random() - 0.7) * 4 : -(Math.random() * 0.7 + 0.2);
+                this.speedX = burst ? (Math.random() - 0.5) * 4 : (Math.random() - 0.5) * 0.4;
+                this.opacity = Math.random() * 0.5 + 0.2;
+                this.isHeart = Math.random() > 0.45;
+                this.color = Math.random() > 0.5 ? '#d4af37' : '#9e1b32';
+            }
+
+            update() {
+                this.y += this.speedY;
+                this.x += this.speedX;
+                if (this.y < -20) {
+                    this.y = canvas.height + 20;
+                    this.x = Math.random() * canvas.width;
+                }
+            }
+
+            draw() {
+                ctx.save();
+                ctx.globalAlpha = this.opacity;
+                ctx.fillStyle = this.color;
+                if (this.isHeart) {
+                    ctx.font = `${this.size}px serif`;
+                    ctx.fillText('❤', this.x, this.y);
+                } else {
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.size / 4, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+                ctx.restore();
+            }
+        }
+
+        for (let i = 0; i < 32; i++) {
+            particles.push(new Particle());
+        }
+
+        function burstHearts() {
+            for (let i = 0; i < 25; i++) {
+                particles.push(new Particle(true));
+            }
+            if (particles.length > 80) {
+                particles.splice(0, 25);
+            }
+        }
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            requestAnimationFrame(animateParticles);
+        }
+
+        animateParticles();
+    </script>
+</body>
+</html>
