@@ -17,7 +17,8 @@
             --dorado: #d4af37;
             --texto-oscuro: #3d1c22;
         }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        html { scroll-behavior: smooth; }
         body {
             font-family: 'Montserrat', sans-serif;
             background-color: var(--rosa-pastel);
@@ -99,6 +100,7 @@
             box-shadow: 0 10px 25px rgba(114, 17, 33, 0.3);
         }
         #main-content { display: none; padding: 50px 20px; max-width: 900px; margin: 0 auto; }
+        section { padding: 40px 0; }
         .section-title {
             font-family: 'Great Vibes', cursive;
             font-size: clamp(2.6rem, 8vw, 3.8rem);
@@ -118,19 +120,38 @@
             border-radius: 16px;
             border: 1px solid rgba(212, 175, 55, 0.4);
             box-shadow: 0 15px 40px rgba(114, 17, 33, 0.08);
-            margin-bottom: 40px;
+            margin-bottom: 50px;
+            position: relative;
+        }
+        .letter-paper::before {
+            content: '❝';
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 4rem;
+            color: rgba(212, 175, 55, 0.35);
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            line-height: 1;
         }
         .letter-text p {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 1.3rem;
+            font-size: clamp(1.22rem, 4.2vw, 1.38rem);
             color: #2c1418;
-            margin-bottom: 20px;
-            line-height: 1.8;
+            margin-bottom: 22px;
+            line-height: 1.85;
+        }
+        .letter-signature {
+            margin-top: 35px;
+            text-align: right;
+            font-family: 'Great Vibes', cursive;
+            font-size: 2.2rem;
+            color: var(--rojo-vino);
         }
         .polaroid-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 30px;
+            gap: 35px;
+            padding: 10px;
         }
         .polaroid-card {
             background: #ffffff;
@@ -139,6 +160,8 @@
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
             border: 1px solid rgba(212, 175, 55, 0.25);
         }
+        .polaroid-card:nth-child(odd) { transform: rotate(-1.5deg); }
+        .polaroid-card:nth-child(even) { transform: rotate(1.5deg); }
         .polaroid-img-wrapper {
             width: 100%;
             aspect-ratio: 4 / 5;
@@ -155,16 +178,19 @@
             font-family: 'Cormorant Garamond', serif;
             font-size: 1.2rem;
             font-style: italic;
-            text-align: center;
-            margin-top: 15px;
+            font-weight: 600;
             color: var(--texto-oscuro);
+            text-align: center;
+            margin-top: 16px;
         }
         footer {
             text-align: center;
             padding: 30px;
             background-color: var(--rojo-vino);
             color: var(--blanco-crema);
-            margin-top: 50px;
+            margin-top: 60px;
+            border-radius: 12px;
+            font-size: 0.9rem;
         }
     </style>
 </head>
@@ -187,51 +213,64 @@
     </header>
 
     <div id="main-content">
-        <h2 class="section-title">Para Alguien Muy Especial</h2>
-        <div class="section-divider"></div>
-        
-        <div class="letter-paper">
-            <div class="letter-text">
-                <p>Querida Diana,</p>
-                <p>Hoy en tu cumpleaños quiero recordarte lo increíble que eres. Que este nuevo año esté lleno de momentos inolvidables, sonrisas sinceras y metas cumplidas.</p>
+        <section>
+            <h2 class="section-title">Para Alguien Muy Especial</h2>
+            <div class="section-divider"></div>
+            
+            <div class="letter-paper">
+                <div class="letter-text">
+                    <p>Querida Diana,</p>
+                    <p>Hoy en tu cumpleaños quiero recordarte lo increíble que eres y lo mucho que iluminas los días de quienes te rodeamos. Que este nuevo año de vida esté repleto de momentos hermosos, grandes sonrisas, salud y la realización de todos los sueños que guardas en tu corazón.</p>
+                    <p>Gracias por ser esa persona tan especial, por tu alegría y por cada instante compartido. Disfruta tu día al máximo.</p>
+                </div>
+                <div class="letter-signature">Con todo mi cariño ❤️</div>
             </div>
-        </div>
+        </section>
 
-        <div class="polaroid-grid">
-            <div class="polaroid-card">
-                <div class="polaroid-img-wrapper">
-                    <img src="IMG-20251208-WA0010.jpg" alt="Foto 1">
+        <section>
+            <h2 class="section-title">Nuestros Recuerdos</h2>
+            <div class="section-divider"></div>
+
+            <div class="polaroid-grid">
+                <div class="polaroid-card">
+                    <div class="polaroid-img-wrapper">
+                        <img src="IMG-20251208-WA0010.jpg" alt="Foto 1">
+                    </div>
+                    <div class="polaroid-caption">Momentos inolvidables</div>
                 </div>
-                <div class="polaroid-caption">Momentos inolvidables</div>
-            </div>
-            <div class="polaroid-card">
-                <div class="polaroid-img-wrapper">
-                    <img src="IMG-20260927-WA0016.jpg" alt="Foto 2">
+
+                <div class="polaroid-card">
+                    <div class="polaroid-img-wrapper">
+                        <img src="IMG-20260927-WA0016.jpg" alt="Foto 2">
+                    </div>
+                    <div class="polaroid-caption">Sonrisas que iluminan</div>
                 </div>
-                <div class="polaroid-caption">Sonrisas que iluminan</div>
-            </div>
-            <div class="polaroid-card">
-                <div class="polaroid-img-wrapper">
-                    <img src="IMG-20260927-WA0053.jpg" alt="Foto 3">
+
+                <div class="polaroid-card">
+                    <div class="polaroid-img-wrapper">
+                        <img src="IMG-20260927-WA0053.jpg" alt="Foto 3">
+                    </div>
+                    <div class="polaroid-caption">A tu lado todo es mejor</div>
                 </div>
-                <div class="polaroid-caption">A tu lado todo es mejor</div>
-            </div>
-            <div class="polaroid-card">
-                <div class="polaroid-img-wrapper">
-                    <img src="IMG_20251208_184717_807.webp" alt="Foto 4">
+
+                <div class="polaroid-card">
+                    <div class="polaroid-img-wrapper">
+                        <img src="IMG_20251208_184717_807.webp" alt="Foto 4">
+                    </div>
+                    <div class="polaroid-caption">Nuestro lugar favorito</div>
                 </div>
-                <div class="polaroid-caption">Nuestro lugar favorito</div>
-            </div>
-            <div class="polaroid-card">
-                <div class="polaroid-img-wrapper">
-                    <img src="IMG_20260102_194923_263.webp" alt="Foto 5">
+
+                <div class="polaroid-card">
+                    <div class="polaroid-img-wrapper">
+                        <img src="IMG_20260102_194923_263.webp" alt="Foto 5">
+                    </div>
+                    <div class="polaroid-caption">Siempre juntos</div>
                 </div>
-                <div class="polaroid-caption">Siempre juntos</div>
             </div>
-        </div>
+        </section>
 
         <footer>
-            <p>Hecho con mucho cariño para ti ❤️</p>
+            <p>Hecho con mucho cariño para ti ❤️ ¡Feliz Cumpleaños, Diana!</p>
         </footer>
     </div>
 
@@ -264,4 +303,3 @@
     </script>
 </body>
 </html>
-
