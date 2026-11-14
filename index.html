@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feliz Cumpleaños, Diana ❤️</title>
+    <!-- Fuentes románticas y legibles de Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Great+Vibes&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --rosa-pastel: #fff0f3;
+            --rosa-suave: #ffccd5;
+            --blanco-crema: #fffafb;
+            --rojo-vino: #721121;
+            --rojo-vino-claro: #9e1b32;
+            --dorado: #d4af37;
+            --dorado-suave: #f3e5ab;
+            --texto-oscuro: #3d1c22;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--blanco-crema);
+            color: var(--texto-oscuro);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* 1. SECCIÓN PRINCIPAL (HERO) */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, var(--rosa-pastel) 0%, var(--rosa-suave) 100%);
+            border-bottom: 2px solid rgba(212, 175, 55, 0.3);
+        }
+
+        .hero-content {
+            max-width: 600px;
+            z-index: 2;
+        }
+
+        .badge {
+            display: inline-block;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--rojo-vino);
+            margin-bottom: 15px;
+            border-bottom: 1px solid var(--dorado);
+            padding-bottom: 5px;
+        }
+
+        h1 {
+            font-family: 'Great Vibes', cursive;
+            font-size: clamp(3.5rem, 8vw, 6rem);
+            color: var(--rojo-vino);
+            margin-bottom: 10px;
+            line-height: 1.1;
+        }
+
+        .subtitle {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(1.2rem, 3vw, 1.6rem);
+            font-style: italic;
+            color: var(--rojo-vino-claro);
+            margin-bottom: 30px;
+        }
+
+        /* 2. SECCIÓN DE MENSAJE */
+        .message-section {
+            padding: 80px 20px;
+            max-width: 700px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .card {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(114, 17, 33, 0.08);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .card h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.2rem;
+            color: var(--rojo-vino);
+            margin-bottom: 20px;
+        }
+
+        .card p {
+            font-size: 1.05rem;
+            color: var(--texto-oscuro);
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+
+        /* 3. FOOTER */
+        footer {
+            text-align: center;
+            padding: 30px 20px;
+            background-color: var(--rojo-vino);
+            color: var(--blanco-crema);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+
+        footer p {
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="hero">
+        <div class="hero-content">
+            <span class="badge">Feliz Cumpleaños</span>
+            <h1>Diana</h1>
+            <p class="subtitle">Que cada momento de hoy esté lleno de alegría y amor</p>
+        </div>
+    </header>
+
+    <main>
+        <section class="message-section">
+            <div class="card">
+                <h2>Para Alguien Muy Especial</h2>
+                <p>Que este nuevo año de vida venga acompañado de grandes retos cumplidos, sonrisas sinceras y momentos inolvidables.</p>
+                <p>¡Disfruta tu día al máximo!</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>Hecho con mucho cariño para ti</p>
+    </footer>
+
+</body>
+</html>
